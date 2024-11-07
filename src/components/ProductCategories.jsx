@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
 
 const ProductCategories = () => {
-  const [categories, setCategories] = useState([]);
-  const [error, setError] = useState(null);
+  const [categories, setCategories] = useState([]); // State to store unique product categories
+  const [error, setError] = useState(null); // State to store error message
 
   useEffect(() => {
-    fetchData();
+    fetchData(); // Fetch categories when component mounts
   }, []);
 
+  // Function to fetch product data and extract categories
   async function fetchData() {
     try {
-      const response = await fetch('https://fakestoreapi.in/api/products');
-      const dataJson = await response.json();
+      const response = await fetch('https://fakestoreapi.in/api/products'); // Fetching product data from the API
+      const dataJson = await response.json(); // Parsing the response as JSON
       
       if (dataJson?.products) {
         // Extract unique categories using map and Set
